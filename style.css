@@ -1,11 +1,7 @@
-#list {
-	color: orange;
-}
-
-.even { 
-    color: red;
-}
-
-.odd {
+#movies {
 	color: purple;
+}
+
+.movie-list-entry {
+	color: red;
 }

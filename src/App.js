@@ -1,34 +1,38 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Search from "./Search";
+import MovieList from "./MovieList";
+import MovieListEntry from "./MovieListEntry";
+import sampledata from "./sampledata";
 
 class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            list: window.sampledata,
+            movies: sampledata.movies,
+            currentList: [],
+            input: ''
         };
     }
 
-    // click(input) {
-    //     this.setState({
-    //         input:input
-    //     });
-    // }
+    clickHandler(input) {
+        this.setState({
+            input: input
+        });
+
+        this.setState({
+            currentList: this.state.movies.filter(movie => movie.title.includes(input))
+        });
+    }
 
     render(){
         return (
           <div>
-            <h2 id='list'>Movie List</h2>
-              <ul>
-              <Search/>
+            <h1 id='movies'>Movie List</h1>
+              <Search clickHandler={ this.clickHandler.bind(this) } />
               <br></br>
-                <li className='even'>Nom Nom Nom</li>
-                <li className='odd'>Hungry Hungry Leanne</li>
-                <li className='even'>Send Noods</li>
-                <li className='odd'>Little Miss Foodie</li>
-                <li className='even'>Food Wars</li>
-              </ul>
+              <MovieList movies={this.state.movies} />
+              <MovieList movies={this.state.currentList} />
           </div>
         )  
     }
@@ -37,4 +41,4 @@ class App extends React.Component {
 export default App;
 
 
-ReactDOM.render(<App data={window.sampledata} />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
