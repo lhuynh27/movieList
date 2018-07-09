@@ -9,7 +9,7 @@ class Search extends React.Component {
         }
     }
 
-    handleChange(e){ 
+    searchList(e){ 
         this.setState({
             input: e.target.value
         });
@@ -19,8 +19,8 @@ class Search extends React.Component {
         return (
             <form>
                 <div>
-                    <input type="text" placeholder="Search List..." onChange={this.handleChange.bind(this)} />
-                    <button onClick={() => this.props.clickHandler(this.state.input)}> Go! </button>
+                    <input type="text" placeholder="Search List" onChange={this.searchList.bind(this)} />
+                    <button class="button" onClick={() => this.props.clickSearchButton(this.state.input)}> Go! </button>
                 </div>    
             </form>
         )

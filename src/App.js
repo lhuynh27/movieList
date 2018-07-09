@@ -4,41 +4,47 @@ import Search from "./Search";
 import MovieList from "./MovieList";
 import MovieListEntry from "./MovieListEntry";
 import sampledata from "./sampledata";
+import AddMovies from "./AddMovies";
 
 class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             movies: sampledata.movies,
-            currentList: [],
             input: ''
         };
     }
 
-    clickHandler(input) {
-        this.setState({
-            input: input
-        });
+    clickSearchButton(input) {
+      this.setState({
+        input: input
+      });
 
-        this.setState({
-            currentList: this.state.movies.filter(movie => movie.title.includes(input))
-        });
+      this.setState({
+        movies: this.state.movies.filter(movie => movie.title.includes(input))
+      });
+    }
+
+    clickAddButton(input) {
+      this.setState({
+        movies: this.state.movies.concat({title: input})
+      });
     }
 
     render(){
         return (
           <div>
             <h1 id='movies'>Movie List</h1>
-              <Search clickHandler={ this.clickHandler.bind(this) } />
+              <AddMovies clickAddButton={ this.clickAddButton.bind(this) } />
+              <br></br>
+              <Search clickSearchButton={ this.clickSearchButton.bind(this) } />
               <br></br>
               <MovieList movies={this.state.movies} />
-              <MovieList movies={this.state.currentList} />
           </div>
         )  
     }
 };
 
 export default App;
-
 
 ReactDOM.render(<App />, document.getElementById('app'));

@@ -1,7 +1,19 @@
 #movies {
-	color: purple;
+    background-color: purple;
+    text-align: center;
+    padding: 10px;
+    color: white;
+    font-weight: normal;
 }
 
 .movie-list-entry {
 	color: red;
+}
+
+.button {
+	background-color: yellow;
+}
+
+.toggle {
+	background-color: green;
 }
